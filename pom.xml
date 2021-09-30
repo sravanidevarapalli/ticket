@@ -36,7 +36,7 @@
 						<password>Sravani@1998</password>
 						<environment>Sandbox</environment>
 						<muleVersion>4.3.0</muleVersion>
-						<applicationName>demo-emp-jenkin</applicationName>
+						<applicationName>demo-ticket-jenkin</applicationName>
 						<objectStoreV2>true</objectStoreV2>
 						<workers>1</workers>
 						<workerType>Micro</workerType>
