@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="ticket_booking-test-suite.xml" />
+	<munit:test name="ticket_booking-test-suite-ticket_booking-mainTest" doc:id="d36daa56-c64a-42e0-839d-bad66cf0851c" description="Test" expectedErrorType="APIKIT:BAD_REQUEST">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="2b67c6f7-7959-44a9-924f-4b1c600d016c" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="ticket_booking-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to ticket_booking-main" doc:id="e139edce-3b40-4850-b2b9-b992cb751374" name="ticket_booking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="065dc1be-442c-4f72-82d3-9cb67f78ba98" actual="#[vars.httpStatus]" expected="400"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="ticket_booking-test-suite-ticket_booking-mainTest1" doc:id="b6e08c79-7465-458c-a3c8-eee8397b89de" description="Test" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="d293a9bd-b089-46d8-80ba-68233986ecb0" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="ticket_booking-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to ticket_booking-main" doc:id="7c7185a7-04a9-4e36-9efe-2aac48717324" name="ticket_booking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="03ddc026-97e4-41d4-a9e0-4e872962b0d1" actual="#[vars.httpStatus]" expected="405"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="ticket_booking-test-suite-ticket_booking-mainTest2" doc:id="9a9b9ded-1476-432d-abe6-cb38325a7614" description="Test" expectedErrorType="APIKIT:NOT_ACCEPTABLE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="93479c0c-427a-4ce4-bc37-2bdf95f20b6f" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="ticket_booking-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to ticket_booking-main" doc:id="e6d74682-5cb0-4976-8c48-692a6aafd843" name="ticket_booking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="fbcde0ea-e996-4c46-b006-751c18769a8d" actual="#[vars.httpStatus]" expected="406"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="ticket_booking-test-suite-ticket_booking-mainTest3" doc:id="a6060492-26bc-4fcb-bce8-04945a3946e9" description="Test" expectedErrorType="APIKIT:NOT_FOUND">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="b43d2302-84f2-4a8a-b29a-432e8cf0605a" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="ticket_booking-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to ticket_booking-main" doc:id="e41d0cfe-6dbd-486b-a80d-8361d5023472" name="ticket_booking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="c81385af-7944-4e3b-bbb4-ab5a71ef16db" actual="#[vars.httpStatus]" expected="404"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="ticket_booking-test-suite-ticket_booking-mainTest4" doc:id="02a2a67b-b55a-4ad4-ad50-b36e1125c08c" description="Test" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="daa6ffc4-f498-43b5-a79a-3e061ea636f8" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="ticket_booking-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to ticket_booking-main" doc:id="e57f238d-a115-413d-a6df-32491d13c695" name="ticket_booking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="9f337d21-f3c5-4ac0-8681-81130b65e065" actual="#[payload]" expected="Unsupported media type"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="ticket_booking-test-suite-ticket_booking-mainTest5" doc:id="62ccffd1-d6cf-4ef9-8ada-fb75548e2203" description="Test" expectedErrorType="APIKIT:NOT_IMPLEMENTED">
+		<munit:behavior>
+			<munit-tools:mock-when doc:name="Mock when" doc:id="792cc3f3-78d7-4165-92c5-554f97f49373" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="ticket_booking-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to ticket_booking-main" doc:id="2ff5628e-29c0-4f4d-985d-512033b8313f" name="ticket_booking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="9a10a097-a5be-4a62-9646-2733d93955ea" actual="#[vars.httpStatus]" expected="501"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
